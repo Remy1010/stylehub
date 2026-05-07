@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories - StyleHub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header container">
+    <div class="logo">StyleHub</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="categories.html" class="active">Categories</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="login.html" class="btn btn-light">Login</a>
+      <a href="signup.html" class="btn btn-outline">Sign Up</a>
+      <button class="icon-btn" aria-label="Cart" onclick="window.location.href='cart.html'">🛒</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" style="min-height: 180px;">
+      <div class="hero-text">
+        <h1>Categories</h1>
+        <p>Explore our collections by category.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">BROWSE BY CATEGORY</h2>
+      <div class="categories" id="categories">
+        <button class="category-card active" data-category="all">
+          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=300&q=80" alt="All">
+          <span>All</span>
+        </button>
+        <button class="category-card" data-category="men">
+          <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=300&q=80" alt="Men">
+          <span>Men</span>
+        </button>
+        <button class="category-card" data-category="women">
+          <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=300&q=80" alt="Women">
+          <span>Women</span>
+        </button>
+        <button class="category-card" data-category="kids">
+          <img src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=300&q=80" alt="Kids">
+          <span>Kids</span>
+        </button>
+        <button class="category-card" data-category="shoes">
+          <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=300&q=80" alt="Shoes">
+          <span>Shoes</span>
+        </button>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">PRODUCTS</h2>
+      <div class="products" id="productGrid"></div>
+    </section>
+
+    <section>
+      <h2 class="section-title">PRODUCT DETAILS</h2>
+      <div class="details-card">
+        <img id="detailImage" src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=800&q=80" alt="Selected product" onerror="this.style.background='#ffcccc'; this.alt='Image failed to load'">
+        <div class="detail-info">
+          <h3 id="detailName">Classic Black T-Shirt</h3>
+          <p id="detailPrice">20000 RWF</p>
+          <p class="size-label">Size:</p>
+          <div class="sizes">
+            <button class="size-btn">S</button>
+            <button class="size-btn active">M</button>
+            <button class="size-btn">L</button>
+            <button class="size-btn">XL</button>
+          </div>
+          <button class="btn btn-dark" id="detailAddToCart">Add to Cart</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="cart-modal">
+    <div class="cart-modal-content">
+      <div class="cart-header">
+        <h2>🛒 Shopping Cart</h2>
+        <button class="close-cart" id="closeCart">&times;</button>
+      </div>
+      <div class="cart-items" id="cartItems">
+        <!-- Cart items will be rendered here -->
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total-row">
+          <strong>Total:</strong>
+          <span id="cartGrandTotal">0 RWF</span>
+        </div>
+        <button class="btn btn-dark checkout-btn" style="width: 100%; margin-top: 16px;">Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h3>Fashion Store</h3>
+        <p>Your one-stop destination for trendy fashion. Discover the latest styles and express your unique personality through our curated collections.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="Twitter">🐦</a>
+          <a href="#" aria-label="Pinterest">📌</a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="categories.html">Categories</a></li>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Sale</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Customer Service</h4>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">Returns & Exchanges</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p>📍 123 Fashion Street, kigali City, KG 125 st</p>
+        <p>📞 +250798862434</p>
+        <p>✉️ cyusaremy644@gmail.com</p>
+        <p>🕐 Mon-Fri: 9AM - 6PM EST</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 Fashion Store. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

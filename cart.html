@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - Fashion Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .cart-page {
+      min-height: 60vh;
+      padding: 40px 0;
+    }
+
+    .cart-page-title {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 30px;
+      text-align: center;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .cart-page-container {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .cart-page-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .cart-page-table th {
+      text-align: left;
+      padding: 15px;
+      border-bottom: 2px solid var(--line);
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+
+    .cart-page-table td {
+      padding: 20px 15px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: middle;
+    }
+
+    .cart-page-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .cart-page-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 10px;
+      background: #f0f0f0;
+    }
+
+    .cart-page-item-info h4 {
+      margin: 0 0 5px 0;
+      font-size: 16px;
+    }
+
+    .cart-page-item-info p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .cart-page-qty {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cart-page-qty button {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .cart-page-qty button:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .cart-page-qty span {
+      min-width: 30px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .cart-page-price {
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .cart-page-remove {
+      background: #ff4444;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+
+    .cart-page-remove:hover {
+      background: #cc0000;
+      transform: translateY(-2px);
+    }
+
+    .cart-page-summary {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 2px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .cart-page-total {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .cart-page-total span {
+      color: var(--primary);
+    }
+
+    .cart-page-actions {
+      display: flex;
+      gap: 15px;
+    }
+
+    .btn-continue {
+      background: transparent;
+      border: 2px solid var(--line);
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .btn-continue:hover {
+      background: var(--line);
+    }
+
+    .empty-cart-page {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .empty-cart-page-icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+    }
+
+    .empty-cart-page h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .empty-cart-page p {
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .cart-page-table thead {
+        display: none;
+      }
+
+      .cart-page-table tbody,
+      .cart-page-table tr,
+      .cart-page-table td {
+        display: block;
+        width: 100%;
+      }
+
+      .cart-page-table tr {
+        margin-bottom: 20px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 15px;
+      }
+
+      .cart-page-table td {
+        border: none;
+        padding: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .cart-page-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--gray-600);
+      }
+
+      .cart-page-item {
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+      }
+
+      .cart-page-item img {
+        width: 120px;
+        height: 120px;
+      }
+
+      .cart-page-summary {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .cart-page-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .cart-page-actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header container">
+    <div class="logo">StyleHub</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="categories.html">Categories</a>
+      <a href="cart.html" class="active">Cart</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="login.html" class="btn btn-light">Login</a>
+      <a href="signup.html" class="btn btn-outline">Sign Up</a>
+      <button class="icon-btn" aria-label="Cart" onclick="window.location.href='cart.html'">🛒</button>
+    </div>
+  </header>
+
+  <main class="container cart-page">
+    <h1 class="cart-page-title">🛒 Shopping Cart</h1>
+    
+    <div class="cart-page-container">
+      <div id="cartPageContent">
+        <!-- Cart content will be rendered here -->
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h3>Fashion Store</h3>
+        <p>Your one-stop destination for trendy fashion. Discover the latest styles and express your unique personality through our curated collections.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="Twitter">🐦</a>
+          <a href="#" aria-label="Pinterest">📌</a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="categories.html">Categories</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Customer Service</h4>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">Returns & Exchanges</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p>📍 123 Fashion Street, Kigali City, KG 125 st</p>
+        <p>📞 +250798862434</p>
+        <p>✉️ cyusaremy644@gmail.com</p>
+        <p>🕐 Mon-Fri: 9AM - 6PM EST</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 Fashion Store. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem('fashionCart')) || [];
+
+    function currency(value) {
+      return `${value.toLocaleString()} RWF`;
+    }
+
+    function saveCart() {
+      localStorage.setItem('fashionCart', JSON.stringify(cart));
+    }
+
+    function renderCartPage() {
+      const cartContent = document.getElementById('cartPageContent');
+      
+      if (cart.length === 0) {
+        cartContent.innerHTML = `
+          <div class="empty-cart-page">
+            <div class="empty-cart-page-icon">🛒</div>
+            <h3>Your cart is empty</h3>
+            <p>Looks like you haven't added any items to your cart yet.</p>
+            <a href="index.html" class="btn btn-dark">Continue Shopping</a>
+          </div>
+        `;
+        return;
+      }
+
+      const cartItemsHTML = cart.map(item => `
+        <tr>
+          <td data-label="Product">
+            <div class="cart-page-item">
+              <img src="${item.image}" alt="${item.name}" onerror="this.style.background='#ffcccc'">
+              <div class="cart-page-item-info">
+                <h4>${item.name}</h4>
+                <p>${item.category}</p>
+              </div>
+            </div>
+          </td>
+          <td data-label="Price" class="cart-page-price">${currency(item.price)}</td>
+          <td data-label="Quantity">
+            <div class="cart-page-qty">
+              <button onclick="updateCartItemQty(${item.id}, -1)">-</button>
+              <span>${item.quantity}</span>
+              <button onclick="updateCartItemQty(${item.id}, 1)">+</button>
+            </div>
+          </td>
+          <td data-label="Total" class="cart-page-price">${currency(item.price * item.quantity)}</td>
+          <td data-label="Action">
+            <button class="cart-page-remove" onclick="removeCartItem(${item.id})">Remove</button>
+          </td>
+        </tr>
+      `).join('');
+
+      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+      cartContent.innerHTML = `
+        <table class="cart-page-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${cartItemsHTML}
+          </tbody>
+        </table>
+        
+        <div class="cart-page-summary">
+          <div class="cart-page-total">
+            Total: <span>${currency(total)}</span>
+          </div>
+          <div class="cart-page-actions">
+            <a href="index.html" class="btn btn-light btn-continue">Continue Shopping</a>
+            <a href="checkout.html" class="btn btn-dark">Proceed to Checkout</a>
+          </div>
+        </div>
+      `;
+    }
+
+    function updateCartItemQty(id, change) {
+      const item = cart.find(item => item.id === id);
+      if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) {
+          removeCartItem(id);
+        } else {
+          saveCart();
+          renderCartPage();
+          updateCartCount();
+        }
+      }
+    }
+
+    function removeCartItem(id) {
+      cart = cart.filter(item => item.id !== id);
+      saveCart();
+      renderCartPage();
+      updateCartCount();
+    }
+
+    function updateCartCount() {
+      const cartBtn = document.querySelector('[aria-label="Cart"]');
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      if (cartBtn) {
+        cartBtn.innerHTML = totalItems > 0 ? `🛒<span class="cart-badge">${totalItems}</span>` : '🛒';
+      }
+    }
+
+    function checkAuthState() {
+      const userEmail = localStorage.getItem('userEmail');
+      const navActions = document.querySelector('.nav-actions');
+      
+      if (userEmail && navActions) {
+        navActions.innerHTML = `
+          <span class="user-welcome">👋 ${userEmail.split('@')[0]}</span>
+          <button class="btn btn-outline" id="logoutBtn">Logout</button>
+          <button class="icon-btn" aria-label="Cart" onclick="window.location.href='cart.html'">🛒</button>
+        `;
+        
+        document.getElementById('logoutBtn')?.addEventListener('click', () => {
+          localStorage.removeItem('userEmail');
+          localStorage.removeItem('userData');
+          alert('Logged out successfully!');
+          window.location.reload();
+        });
+      }
+    }
+
+    // Add cart badge styles
+    const style = document.createElement('style');
+    style.textContent = `
+      .cart-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: var(--gradient-2, #764ba2);
+        color: white;
+        font-size: 11px;
+        font-weight: 700;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .icon-btn {
+        position: relative;
+      }
+    `;
+    document.head.appendChild(style);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuthState();
+      renderCartPage();
+      updateCartCount();
+    });
+  </script>
+</body>
+</html>
