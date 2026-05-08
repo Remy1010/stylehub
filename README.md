@@ -1,14 +1,14 @@
 # stylehub
 an e-commerce web application for buying and selling clothes and shoes 
 
-🚀 Features
-User Login & Signup forms
-Clean and modern UI
-Responsive design (works on mobile & desktop)
-Form validation (basic)
+<h3>🚀 Features<h3>
+<p>- User Login & Signup forms</p>
+<p>- Clean and modern UI</p>
+<p>- Responsive design (works on mobile & desktop)</p>
+<p>- Form validation (basic)</p>
 
-🛠️ Technologies Used
-HTML5
-CSS3
-JavaScript
-Git & GitHub
+<h3>🛠️ Technologies Used<h3>
+<p>- HTML5</p>
+<p>- CSS3</p>
+<p>- JavaScript</p>
+
